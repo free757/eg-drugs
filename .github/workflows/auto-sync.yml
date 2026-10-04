@@ -2,7 +2,7 @@ name: Auto Sync Fork Upstream
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # Run automatically on the 1st of every month at 00:00 UTC
+    - cron: '0 2 * * *' # Run automatically every day at 02:00 AM UTC
   workflow_dispatch: # Allows manual trigger anytime
 
 permissions:
