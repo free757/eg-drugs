@@ -1,0 +1,24 @@
+name: Auto Sync Fork Upstream
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Run automatically on the 1st of every month at 00:00 UTC
+  workflow_dispatch: # Allows manual trigger anytime
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+
+      - name: Sync upstream changes
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
+        with:
+          upstream_sync_repo: mahmoudfalous/eg-drugs
+          upstream_sync_branch: main
+          target_sync_branch: main
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
